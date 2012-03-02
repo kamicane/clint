@@ -1,0 +1,3 @@
+[submodule "node_modules/emi"]
+	path = node_modules/emi
+	url = https://github.com/kamicane/emi
