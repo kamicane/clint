@@ -1,7 +1,7 @@
 {
 	"name": "clint",
 	"description": "a stupidly tiny command line interface helper",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"license": "MIT (http://mootools.net/license.txt)",
 	"main": "./lib/main.js",
 	"keywords": ["command line helper", "command-line", "options parser", "args parser"],
@@ -9,7 +9,7 @@
 	"author": "Valerio Proietti <@kamicane> (http://mad4milk.net)",
 	"bugs": "https://github.com/kamicane/clint/issues",
 	"dependencies": {
-		"emi": ">=0.0.2"
+		"emi": ">=0.0.3"
 	},
 	"repository": {
 		"type": "git",
