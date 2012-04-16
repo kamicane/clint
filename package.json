@@ -1,15 +1,17 @@
 {
 	"name": "clint",
-	"description": "a stupidly tiny command line interface helper",
-	"version": "0.0.5",
+	"description": "event driven options parser",
+	"version": "0.0.6",
 	"license": "MIT (http://mootools.net/license.txt)",
-	"main": "./lib/main.js",
+	"main": "./clint.js",
 	"keywords": ["command line helper", "command-line", "options parser", "args parser"],
 	"homepage": "http://github.com/kamicane/clint",
 	"author": "Valerio Proietti <@kamicane> (http://mad4milk.net)",
-	"bugs": "https://github.com/kamicane/clint/issues",
+	"bugs": {
+		"url": "https://github.com/kamicane/clint/issues"
+	},
 	"dependencies": {
-		"emi": ">=0.0.3"
+		"prime": "0.0.5-alpha"
 	},
 	"repository": {
 		"type": "git",
