@@ -1,7 +1,7 @@
 {
 	"name": "clint",
 	"description": "event driven options parser",
-	"version": "0.0.6",
+	"version": "0.0.5",
 	"license": "MIT (http://mootools.net/license.txt)",
 	"main": "./clint.js",
 	"keywords": ["command line helper", "command-line", "options parser", "args parser"],
