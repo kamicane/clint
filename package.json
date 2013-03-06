@@ -1,7 +1,7 @@
 {
   "name": "clint",
   "description": "event driven options parser",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "license": "MIT (http://mootools.net/license.txt)",
   "main": "./clint.js",
   "keywords": [
@@ -16,7 +16,7 @@
     "url": "https://github.com/kamicane/clint/issues"
   },
   "dependencies": {
-    "prime": "0.0.5-alpha"
+    "prime": "0.1.x"
   },
   "repository": {
     "type": "git",
