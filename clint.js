@@ -4,7 +4,7 @@
 "use strict"
 
 var prime   = require("prime"),
-    Emitter = require("prime/util/emitter")
+    Emitter = require("prime/emitter")
 
 var Clint = prime({
 
