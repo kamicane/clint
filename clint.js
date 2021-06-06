@@ -2,34 +2,22 @@
 // inspired by commander.js
 
 "use strict"
+const process = require('process');
+const EventEmitter = require('events');
 
-var prime   = require("prime"),
-    Emitter = require("prime/emitter")
+class Clint extends EventEmitter {
 
-var Clint = prime({
-
-    constructor: function(){
+    constructor() {
+        super()
         this.shortcuts = {}
         this.rshortcuts = {}
         this.commands = {}
         this.parsers = {}
     }
 
-})
-
-Clint.implement(new Emitter)
-
-var indent = function(num){
-    var str = ""
-    for (var i = 0; i < num; i++) str += " "
-    return str
-}
-
-Clint.implement({
-
     // simply returns the (optionally indented) help string, separated with their description with your separator or :
 
-    help: function(indentation, separator){
+    help(indentation, separator) {
 
         if (separator == null) separator = " : "
 
@@ -38,17 +26,17 @@ Clint.implement({
         var helpstring = "",
             commands = []
 
-        for (var option in this.commands){
+        for (var option in this.commands) {
             var shortcut = this.rshortcuts[option]
             if (shortcut) option += ", " + shortcut
             commands.push(option)
         }
 
-        var max = Math.max.apply(Math, commands.map(function(c){
+        var max = Math.max.apply(Math, commands.map(function (c) {
             return c.length
         })), i = 0
 
-        for (var option in this.commands){
+        for (var option in this.commands) {
             var usage = this.commands[option], command = commands[i]
             if (usage && usage !== true) helpstring += indentation + command + indent(max - command.length) + separator + usage + "\n"
             i++
@@ -56,15 +44,15 @@ Clint.implement({
 
         return helpstring
 
-    },
+    }
 
     // sets a command. usage: .command("--help", "-h" or null, "helps people", optionalParser)
 
-    command: function(mm, m, msg, parse){
+    command(mm, m, msg, parse) {
         this.commands[mm] = msg || true
         this.parsers[mm] = parse
 
-        if (m){
+        if (m) {
             this.shortcuts[m] = mm
             this.rshortcuts[mm] = m
         }
@@ -72,41 +60,21 @@ Clint.implement({
         return this
     }
 
-})
-
-var defaultParser = function(arg){
-    return arg
-}
-
-var execute = function(self, command, args){
-    if (!args || !args.length) args = [null]
-
-    var chunk = args.map(function(arg){
-        var parsed = (self.parsers[command] || defaultParser)(arg)
-        self.emit("command", command, parsed)
-        return parsed
-    })
-
-    self.emit.apply(self, ["chunk", command].concat(chunk))
-}
-
-
-Clint.implement({
 
     // starts parsing and emit events. usage: .parse(process.argv.slice(2)) to parse command line arguments.
 
-    parse: function(args){
+    parse(args) {
 
         var temp = [], command
 
-        args.forEach(function(arg, i){
+        args.forEach(function (arg, i) {
             var theCommand = this.commands[arg] && arg || this.shortcuts[arg]
 
-            if (theCommand){
+            if (theCommand) {
                 if (command) execute(this, command, temp)
                 command = theCommand
                 temp = null
-            } else if (command){
+            } else if (command) {
                 (temp || (temp = [])).push(arg)
             }
 
@@ -119,8 +87,34 @@ Clint.implement({
 
     }
 
-})
+    go() {
+        this.parse(process.argv.slice(2))
+    }
 
-module.exports = function(){
-    return new Clint
 }
+
+var indent = function (num) {
+    var str = ""
+    for (var i = 0; i < num; i++) str += " "
+    return str
+}
+
+var defaultParser = function (arg) {
+    return arg
+}
+
+var execute = function (self, command, args) {
+    if (!args || !args.length) args = [null]
+
+    var chunk = args.map(function (arg) {
+        var parsed = (self.parsers[command] || defaultParser)(arg)
+        self.emit("command", command, parsed)
+        return parsed
+    })
+
+    self.emit.apply(self, ["chunk", command].concat(chunk))
+}
+
+export function clint() { return new Clint };
+
+export default new Clint;

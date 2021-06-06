@@ -1,7 +1,7 @@
 {
   "name": "clint",
   "description": "event driven options parser",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "license": "MIT (http://mootools.net/license.txt)",
   "main": "./clint.js",
   "keywords": [
@@ -12,22 +12,28 @@
   ],
   "homepage": "http://github.com/kamicane/clint",
   "author": "Valerio Proietti <@kamicane> (http://mad4milk.net)",
-  "contributors" : [
-	"Cristian Carlesso <@kentaromiura> (https://github.com/kentaromiura)"
+  "contributors": [
+    "Cristian Carlesso <@kentaromiura> (https://github.com/kentaromiura)"
   ],
   "bugs": {
     "url": "https://github.com/kamicane/clint/issues"
   },
-  "dependencies": {
-    "prime": "0.3.2"
-  },
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git://github.com/kamicane/clint.git"
   },
-  "devDependencies": {},
   "optionalDependencies": {},
   "engines": {
     "node": "*"
+  },
+  "devDependencies": {
+    "jest": "^27.0.4",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "babel-jest": "^27.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
